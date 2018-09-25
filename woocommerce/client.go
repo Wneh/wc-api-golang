@@ -59,6 +59,10 @@ func NewClient(store, ck, cs string, option *Options) (*Client, error) {
 
 	rawClient := option.HTTPClient
 
+	if rawClient == nil{
+		rawClient = http.DefaultClient
+	}
+
 	// Set client's transport to default when nil
 	if rawClient.Transport == nil {
 		rawClient.Transport = http.DefaultTransport
