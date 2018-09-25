@@ -59,7 +59,7 @@ func NewClient(store, ck, cs string, option *Options) (*Client, error) {
 
 	rawClient := option.HTTPClient
 
-	if rawClient == nil{
+	if rawClient == nil {
 		rawClient = http.DefaultClient
 	}
 
@@ -96,16 +96,18 @@ func (c *Client) oauth(method, urlStr string, params url.Values) string {
 	params.Add("oauth_nonce", sha1Nonce)
 	params.Add("oauth_signature_method", HashAlgorithm)
 	var keys []string
-	for k, _ := range params {
+	for k := range params {
 		keys = append(keys, k)
 	}
 	sort.Strings(keys)
 	var paramStrs []string
+	//url.PathEscape for Umlauts + Spaces
 	for _, key := range keys {
-		paramStrs = append(paramStrs, fmt.Sprintf("%s=%s", key, params.Get(key)))
+		paramStrs = append(paramStrs, fmt.Sprintf("%s=%s", key, url.PathEscape(params.Get(key))))
 	}
 	paramStr := strings.Join(paramStrs, "&")
 	params.Add("oauth_signature", c.oauthSign(method, urlStr, paramStr))
+
 	return params.Encode()
 }
 

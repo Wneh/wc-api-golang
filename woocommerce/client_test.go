@@ -16,7 +16,6 @@ func TestClientWithDefaultParams(t *testing.T) {
 	}
 }
 
-
 func TestClientWithDifferentVersion(t *testing.T) {
 	client, err := NewClient("http://example.tld", "", "", &Options{Version: "v3"})
 
