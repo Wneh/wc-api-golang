@@ -2,6 +2,7 @@ package woocommerce
 
 import (
 	"time"
+	"net/http"
 )
 
 type Options struct {
@@ -12,4 +13,5 @@ type Options struct {
 	VerifySSL       bool
 	QueryStringAuth string
 	OauthTimestamp  time.Time
+	HTTPClient *http.Client
 }

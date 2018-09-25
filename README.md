@@ -1,15 +1,16 @@
 # WooCommerce API - Golang Client
 
 A Golang wrapper for the WooCommerce REST API. Easily interact with the WooCommerce REST API using this library.
-This is a fork of `mikespook/wc-api-golang`. Main difference: get/post/put/delete accepts context and package uses
-`http.DefaultClient` and `http.DefaultTransport`.
+This is a fork of `mikespook/wc-api-golang` and `darh/wc-api-golang`.
+Main difference: get/post/put/delete accepts context and package uses `http.DefaultClient` and `http.DefaultTransport`.
+Makes http.Client exchangeable so f.ex. it can be use with Google App Engine Standard (-> urlfetch.Client)
 
 This lib is **not** backward compatible with mikespook/wc-api-golang`!
 
 ## Installation
 
 ```bash
-$ go get github.com/darh/wc-api-golang/woocommerce
+$ go get github.com/pitwch/wc-api-golang/woocommerce
 ```
 
 ## Getting started
@@ -25,7 +26,7 @@ Setup for the new WP REST API integration (WooCommerce 2.6 or later):
 
 ```golang
 import (
-  wc "github.com/darh/wc-api-golang/woocommerce"
+  wc "github.com/pitwch/wc-api-golang/woocommerce"
 )
 
 var woocommerce = wc.NewClient(
@@ -59,6 +60,8 @@ var woocommerce = wc.NewClient(
 | `VerifySSL`        | `bool`   | Verify SSL when connect, use this option as `false` when need to test with self-signed certificates, default is `true` |
 | `QueryStringAuth` | `bool`   | Force Basic Authentication as query string when `true` and using under HTTPS, default is `false`                       |
 | `OauthTimestamp`   | `time.Time` | Custom oAuth timestamp, default is `time.Now()`                                                                            |
+| `HTTPClient`   | `http.Client` | HTTPClient f.ex. `urlfetch.Client(ctx)`                                                                            |
+
 
 ## Methods
 
