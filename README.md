@@ -2,8 +2,11 @@
 
 A Golang wrapper for the WooCommerce REST API. Easily interact with the WooCommerce REST API using this library.
 This is a fork of `mikespook/wc-api-golang` and `darh/wc-api-golang`.
-Main difference: get/post/put/delete accepts context and package uses `http.DefaultClient` and `http.DefaultTransport`.
-Makes http.Client exchangeable so f.ex. it can be use with Google App Engine Standard (-> urlfetch.Client)
+
+### Main differences: 
+- get/post/put/delete accepts context and package uses `http.DefaultClient` and `http.DefaultTransport`.
+- http.Client exchangeable so f.ex. it can be use with Google App Engine Standard (-> urlfetch.Client)
+- Fixed false URL encoding for spaces (f.ex. sku='DEMO Artikel') and Umlauts (f.ex. sku='Überzug')
 
 This lib is **not** backward compatible with mikespook/wc-api-golang`!
 
