@@ -169,6 +169,10 @@ func (c *Client) Post(ctx context.Context, endpoint string, data interface{}) (i
 	return c.request(ctx, "POST", endpoint, nil, data)
 }
 
+func (c *Client) PostWithParams(ctx context.Context, endpoint string, params url.Values, data interface{}) (io.ReadCloser, error) {
+	return c.request(ctx, "POST", endpoint, params, data)
+}
+
 func (c *Client) Put(ctx context.Context, endpoint string, data interface{}) (io.ReadCloser, error) {
 	return c.request(ctx, "PUT", endpoint, nil, data)
 }
